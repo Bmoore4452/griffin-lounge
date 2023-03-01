@@ -1,4 +1,23 @@
 {
+  "name": "griffin-lounge",
+  "version": "1.0.0",
+  "description": "Social media API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bmoore4452/griffin-lounge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bmoore4452/griffin-lounge/issues"
+  },
+  "homepage": "https://github.com/Bmoore4452/griffin-lounge#readme",
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^6.10.0"

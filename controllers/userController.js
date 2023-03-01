@@ -10,13 +10,14 @@ module.exports = {
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
-      .populate('thought')
-      .populate('user')
-      .then((users) =>
+      .populate('thoughts')
+      .populate('friends')
+      .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID exists' })
-          : res.json(users).catch((err) => res.status(500).json(err))
-      );
+          : res.status(200).json(user)
+      )
+      .catch((err) => res.status(500).json(err));
   },
   createUser(req, res) {
     User.create(req.body)
@@ -50,5 +51,17 @@ module.exports = {
           : res.json(users)
       )
       .catch((err) => res.status(500).json(err));
+  },
+
+  addFriend(req, res) {
+    User.findByIdAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
+    ).then((users) =>
+      !users
+        ? res.status(404).json({ message: 'No user exists with that ID!' })
+        : res.json(users)
+    );
   },
 };
